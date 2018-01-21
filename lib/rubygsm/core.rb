@@ -29,7 +29,7 @@ class Modem
     :read_timeout => 10,
     :command_retries => 2,
     :reset_on_failure => false,
-    :init_sequence => ["ATZ","ATE0","AT+CMEE"],
+    :init_sequence => ["ATZ","ATE0","AT+CMEE=1"],
   }
 
 	# call-seq:
@@ -555,7 +555,7 @@ class Modem
 	# Resets the modem software, or raises Gsm::ResetError.
 	def reset!
 		begin
-			return command!("AT+CFUN=1")
+			return command!("AT+CFUN=1,1")
 	
 		# if the reset fails, we'll wrap the exception in
 		# a Gsm::ResetError, so it can be caught upstream.
